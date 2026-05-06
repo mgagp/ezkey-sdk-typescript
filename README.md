@@ -13,17 +13,18 @@ See [`PRODUCT_BRIEF.md`](PRODUCT_BRIEF.md) for the product framing.
 
 Use this path when you only want to run the split demo against the shared **EXP1** Integration API.
 
-1. **Install once** (from the repo root):
+1. **Install and build** (from the repo root). `npm run build` compiles the SDK, demo API, and demo UI and catches TypeScript errors before you run the dev servers:
 
    ```bash
    npm install
+   npm run build
    ```
 
 2. **Default Integration API URL**: if you do not set `EZKEY_BASE_URL`, the demo API targets **EXP1** at `https://exp1-integration-api.ezkey.org` (see `apps/demo-api/.env.example`).
 
 3. **Backend environment file**: copy `apps/demo-api/.env.example` to `apps/demo-api/.env` and set your **integration key pair**—at minimum `EZKEY_INTEGRATION_KEY` and `EZKEY_SECRET_KEY` (the public integration key and the secret shown once at key creation). No Ezkey credentials belong in the UI; only this API process uses them.
 
-4. **Run API and UI in two separate terminals** (from the repo root after `npm install`). Each window runs one npm script:
+4. **Run API and UI in two separate terminals** (from the repo root after `npm install` and `npm run build`). Each window runs one npm script:
 
    **Terminal 1 — `npm run demo:api`** (Nest demo API, watch mode):
 
@@ -117,10 +118,11 @@ From the repo root:
 
 ```bash
 npm install
+npm run build
 npm run demo
 ```
 
-This starts the **API** (watch) and the **Vite UI** together via `concurrently`.
+This starts the **API** (watch) and the **Vite UI** together via `concurrently`. Use the same `npm install` / `npm run build` prerequisite before the two-terminal commands below.
 
 Or run two terminals (same npm commands as in **Quick test**):
 
