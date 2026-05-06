@@ -1,0 +1,44 @@
+{
+  "name": "ezkey-integration-sdk",
+  "version": "1.0.0",
+  "description": "TypeScript client for Ezkey Integration API (machine-to-machine auth attempts)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "ezkey",
+    "mfa",
+    "integration-api",
+    "typescript"
+  ],
+  "author": "Ezkey contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgagp/ezkey-sdk-typescript.git",
+    "directory": "packages/integration-sdk"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  }
+}

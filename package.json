@@ -1,0 +1,26 @@
+{
+  "name": "ezkey-sdk-typescript-workspace",
+  "private": true,
+  "description": "Workspace for the public Ezkey TypeScript Integration SDK and demo",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "update:spec": "./scripts/update-spec.sh",
+    "generate:api": "openapi-typescript ./openapi/integration-api.json -o ./packages/integration-sdk/src/generated/integration-api.ts",
+    "generate": "npm run generate:api",
+    "build": "npm run build -w ezkey-integration-sdk && npm run build -w ezkey-demo-fullstack-typescript",
+    "clean": "rimraf packages/integration-sdk/dist apps/demo-fullstack/dist",
+    "demo": "npm run start -w ezkey-demo-fullstack-typescript"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.10.1",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  }
+}
