@@ -16,7 +16,6 @@ import type {
 import { EzkeyIntegrationError } from './EzkeyIntegrationError.js';
 
 const AUTH_ATTEMPTS_PATH = '/api/v1/auth-attempts';
-const DEFAULT_BASE_URL = 'https://exp1-integration-api.ezkey.org';
 const ENV_BASE_URL = 'EZKEY_BASE_URL';
 const ENV_INTEGRATION_KEY = 'EZKEY_INTEGRATION_KEY';
 const ENV_SECRET_KEY = 'EZKEY_SECRET_KEY';
@@ -109,13 +108,18 @@ export class EzkeyIntegrationClient {
 
   /**
    * Builds from {@code EZKEY_BASE_URL}, {@code EZKEY_INTEGRATION_KEY}, {@code EZKEY_SECRET_KEY}.
+   * There is no default base URL: Ezkey is deployed on your infrastructure, so callers must set
+   * {@code EZKEY_BASE_URL} to their Integration API origin.
    *
    * @throws Error when required variables are missing
    */
   static fromEnvironment(): EzkeyIntegrationClient {
     const ik = process.env[ENV_INTEGRATION_KEY]?.trim();
     const sk = process.env[ENV_SECRET_KEY]?.trim();
-    const base = process.env[ENV_BASE_URL]?.trim() || DEFAULT_BASE_URL;
+    const base = process.env[ENV_BASE_URL]?.trim();
+    if (!base) {
+      throw new Error(`Environment variable ${ENV_BASE_URL} is required`);
+    }
     if (!ik) {
       throw new Error(`Environment variable ${ENV_INTEGRATION_KEY} is required`);
     }

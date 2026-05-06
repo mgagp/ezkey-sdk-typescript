@@ -16,7 +16,7 @@ This package is published from [`ezkey-sdk-typescript`](../..) alongside a runna
 import { EzkeyIntegrationClient } from 'ezkey-integration-sdk';
 
 const client = new EzkeyIntegrationClient({
-  baseUrl: 'https://exp1-integration-api.ezkey.org',
+  baseUrl: process.env.EZKEY_BASE_URL!,
   integrationKey: process.env.EZKEY_INTEGRATION_KEY!,
   secretKey: process.env.EZKEY_SECRET_KEY!,
 });
@@ -26,7 +26,7 @@ const waited = await client.waitForAuthAttempt(created.authAttemptId, 60, 2);
 console.log(waited.status, waited.completed);
 ```
 
-Or `EzkeyIntegrationClient.fromEnvironment()` using `EZKEY_BASE_URL`, `EZKEY_INTEGRATION_KEY`, and `EZKEY_SECRET_KEY`.
+Or `EzkeyIntegrationClient.fromEnvironment()`, which requires all three: `EZKEY_BASE_URL` (no default—your Integration API origin), `EZKEY_INTEGRATION_KEY`, and `EZKEY_SECRET_KEY`.
 
 ## Requirements
 

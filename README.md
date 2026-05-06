@@ -94,6 +94,8 @@ Instead, this repository uses:
 
 This keeps the contract explicit while preserving a stable, ergonomic API surface for consumers.
 
+The Integration SDK does **not** assume a default Integration API base URL—Ezkey is normally deployed on your infrastructure, so callers always supply `baseUrl` or `EZKEY_BASE_URL`. Only the **demo API** (`apps/demo-api`) defaults to EXP1 when `EZKEY_BASE_URL` is unset (see `apps/demo-api/.env.example`).
+
 ## Typical Local Workflow
 
 ```bash
