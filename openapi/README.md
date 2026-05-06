@@ -16,8 +16,8 @@ npm run update:spec
 
 By default, the script fetches:
 
-- `http://localhost:7080/api-docs`
+- `https://exp1-integration-api.ezkey.org/api-docs` (EXP1)
 
 Override the source URL with:
 
-- `EZKEY_INTEGRATION_API_DOCS_URL`
+- `EZKEY_INTEGRATION_API_DOCS_URL` (e.g. `http://localhost:7080/api-docs` for a local stack)

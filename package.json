@@ -14,11 +14,15 @@
     "update:spec": "./scripts/update-spec.sh",
     "generate:api": "openapi-typescript ./openapi/integration-api.json -o ./packages/integration-sdk/src/generated/integration-api.ts",
     "generate": "npm run generate:api",
-    "build": "npm run build -w ezkey-integration-sdk && npm run build -w ezkey-demo-fullstack-typescript",
-    "clean": "rimraf packages/integration-sdk/dist apps/demo-fullstack/dist",
-    "demo": "npm run start -w ezkey-demo-fullstack-typescript"
+    "build": "npm run build -w ezkey-integration-sdk && npm run build -w ezkey-demo-api && npm run build -w ezkey-demo-ui",
+    "clean": "rimraf packages/integration-sdk/dist apps/demo-api/dist apps/demo-ui/dist",
+    "demo": "concurrently -n api,ui -c blue,green \"npm run start:dev -w ezkey-demo-api\" \"npm run dev -w ezkey-demo-ui\"",
+    "demo:api": "npm run start:dev -w ezkey-demo-api",
+    "demo:ui": "npm run dev -w ezkey-demo-ui",
+    "dev": "npm run demo"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "openapi-typescript": "^7.10.1",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3"

@@ -6,7 +6,7 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SPEC_DIR="$PROJECT_ROOT/openapi"
 SPEC_FILE="$SPEC_DIR/integration-api.json"
 SPEC_BACKUP_FILE="$SPEC_FILE.backup"
-INTEGRATION_API_DOCS_URL="${EZKEY_INTEGRATION_API_DOCS_URL:-http://localhost:7080/api-docs}"
+INTEGRATION_API_DOCS_URL="${EZKEY_INTEGRATION_API_DOCS_URL:-https://exp1-integration-api.ezkey.org/api-docs}"
 
 print_info() {
   echo "[INFO] $1"

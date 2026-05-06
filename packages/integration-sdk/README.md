@@ -16,7 +16,7 @@ This package is published from [`ezkey-sdk-typescript`](../..) alongside a runna
 import { EzkeyIntegrationClient } from 'ezkey-integration-sdk';
 
 const client = new EzkeyIntegrationClient({
-  baseUrl: 'http://localhost:7080',
+  baseUrl: 'https://exp1-integration-api.ezkey.org',
   integrationKey: process.env.EZKEY_INTEGRATION_KEY!,
   secretKey: process.env.EZKEY_SECRET_KEY!,
 });

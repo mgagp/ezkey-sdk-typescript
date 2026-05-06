@@ -13,7 +13,7 @@ This repository is not a general JavaScript frontend SDK and it is not a mobile 
 It is a backend-first TypeScript integration workspace built around two complementary parts:
 
 - a framework-agnostic TypeScript SDK for Ezkey Integration API operations;
-- a runnable NestJS integration example with a small UI and backend that demonstrates real SDK usage.
+- a runnable split reference demo: a **Vite + TypeScript merchant UI** and a **NestJS JSON API** that alone uses the SDK against Ezkey (two processes, realistic boundaries).
 
 The SDK is the product. The NestJS example is the reference adoption path.
 
@@ -53,11 +53,11 @@ The repository should prioritize the machine-to-machine backend integration surf
 
 ### 3. Offer a realistic NestJS reference example
 
-The repository should include a runnable example application built with NestJS. This example should demonstrate how a TypeScript backend can use the SDK in a practical login or approval flow while staying small enough to understand quickly.
+The repository should include a runnable example: a NestJS **API** that embeds the SDK, plus a separate **browser UI** (Vite, vanilla TypeScript) that calls only that API. Together they demonstrate how a TypeScript backend uses the SDK in a practical login or approval flow while staying small enough to understand quickly.
 
 ### 4. Keep the example useful but lightweight
 
-The example should include both a minimal backend and a small UI, but it must remain clearly positioned as a reference demo, not as a second product inside the repository.
+The example should include both a minimal backend API and a small UI (separate dev servers), but it must remain clearly positioned as a reference demo, not as a second product inside the repository.
 
 ### 5. Make the repository easy to understand
 
@@ -84,7 +84,7 @@ The initial scope of this repository does not aim to provide:
 `ezkey-sdk-typescript` should be a single repository that contains:
 
 - the published TypeScript integration SDK;
-- a runnable NestJS example application;
+- a runnable split demo (NestJS API + Vite UI);
 - supporting documentation for adoption and local evaluation.
 
 At this stage, the example should stay in the same repository as the SDK so the product surface, example usage, and documentation evolve together.
@@ -94,10 +94,9 @@ At this stage, the example should stay in the same repository as the SDK so the 
 The intended initial shape is:
 
 - one publishable SDK package focused on the Ezkey Integration API;
-- one NestJS example application that includes:
-  - a backend using the SDK;
-  - a small UI for triggering and observing the authentication flow;
-  - configuration that allows a developer to connect the example to a real Ezkey instance and API key.
+- one NestJS **demo API** using the SDK (Ezkey credentials server-side only);
+- one **demo UI** (Vite) that talks only to that API over HTTP;
+- configuration that allows a developer to connect the API to a real Ezkey instance and API key, and the UI to the API base URL.
 
 The example should be simple enough to read as documentation, but real enough to be used for local exploration and manual validation.
 
@@ -121,7 +120,7 @@ Keep the SDK framework-agnostic, while allowing the example application to make 
 
 ### Realistic demonstration
 
-The example should reflect how a backend team would actually integrate Ezkey, including API key configuration, server-side flow orchestration, and a minimal user-facing UI.
+The example should reflect how a backend team would actually integrate Ezkey: API keys and SDK usage stay on the server; the browser talks only to the merchant backend; plus a minimal user-facing UI on a separate origin in development.
 
 ## Success Criteria
 
@@ -129,7 +128,7 @@ This repository is successful when:
 
 - a TypeScript backend developer can quickly understand whether the SDK fits their stack;
 - the SDK feels straightforward to use from any Node.js backend framework;
-- the NestJS example clearly demonstrates the recommended integration path;
+- the split NestJS API + UI example clearly demonstrates the recommended integration path;
 - the example helps developers test Ezkey against a real backend instance without unnecessary setup complexity;
 - the repository remains small, coherent, and easy to maintain.
 

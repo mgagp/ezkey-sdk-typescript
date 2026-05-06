@@ -42,7 +42,8 @@ export type AuthAttemptStatus = AuthAttemptDto['authAttemptStatus'] | 'EXPIRED';
  */
 export interface EzkeyIntegrationSdkConfig {
   /**
-   * Integration API base URL (no trailing slash), e.g. {@code http://localhost:7080}.
+   * Integration API base URL (no trailing slash), e.g. {@code https://exp1-integration-api.ezkey.org}
+   * or {@code http://localhost:7080} for a local stack.
    */
   baseUrl: string;
   /** Public integration key ({@code ezkey_ikey_...}). */

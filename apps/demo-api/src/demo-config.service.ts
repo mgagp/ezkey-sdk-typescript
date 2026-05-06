@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DemoConfigService {
-  readonly baseUrl = process.env.EZKEY_BASE_URL?.trim() || 'http://localhost:7080';
+  readonly baseUrl =
+    process.env.EZKEY_BASE_URL?.trim() || 'https://exp1-integration-api.ezkey.org';
 
   readonly integrationKey = process.env.EZKEY_INTEGRATION_KEY?.trim() || '';
 

@@ -16,7 +16,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:7080",
+      "url": "https://exp1-integration-api.ezkey.org",
       "description": "Generated server url"
     }
   ],

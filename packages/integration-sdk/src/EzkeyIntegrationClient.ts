@@ -16,7 +16,7 @@ import type {
 import { EzkeyIntegrationError } from './EzkeyIntegrationError.js';
 
 const AUTH_ATTEMPTS_PATH = '/api/v1/auth-attempts';
-const DEFAULT_BASE_URL = 'http://localhost:7080';
+const DEFAULT_BASE_URL = 'https://exp1-integration-api.ezkey.org';
 const ENV_BASE_URL = 'EZKEY_BASE_URL';
 const ENV_INTEGRATION_KEY = 'EZKEY_INTEGRATION_KEY';
 const ENV_SECRET_KEY = 'EZKEY_SECRET_KEY';
@@ -28,6 +28,19 @@ function normalizeBaseUrl(url: string): string {
 function buildBasicAuthHeader(integrationKey: string, secretKey: string): string {
   const encoded = Buffer.from(`${integrationKey}:${secretKey}`, 'utf8').toString('base64');
   return `Basic ${encoded}`;
+}
+
+/** Extra guidance when Integration API returns 401 with no JSON/detail body (common with Spring Security). */
+function integration401Hint(body: string): string {
+  const trimmed = body?.trim() ?? '';
+  const extracted = extractErrorMessage(trimmed);
+  if (trimmed.length > 0 && extracted !== 'No details provided.') {
+    return extracted;
+  }
+  return (
+    'Verify EZKEY_INTEGRATION_KEY and EZKEY_SECRET_KEY match an active API key (secret is the plaintext shown once at creation). ' +
+    'If the key has an IP whitelist, allow your client address (local dev on this machine: 127.0.0.1 or ::1).'
+  );
 }
 
 function extractErrorMessage(body: string): string {
@@ -302,7 +315,7 @@ export class EzkeyIntegrationClient {
     const message = (() => {
       switch (res.status) {
         case 401:
-          return `Authentication failed (401). Check API key credentials and IP whitelist. ${extractErrorMessage(text)}`;
+          return `Authentication failed (401). ${integration401Hint(text)}`;
         case 403:
           return `Access denied (403). Enrollment may not belong to this integration. ${extractErrorMessage(text)}`;
         case 404:
