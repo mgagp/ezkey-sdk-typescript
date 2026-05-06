@@ -1,0 +1,31 @@
+{
+  "name": "ezkey-demo-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NestJS demo API — Ezkey Integration SDK only (no merchant UI)",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "start:dev": "tsx watch --tsconfig tsconfig.json src/main.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.19",
+    "@nestjs/core": "^11.1.19",
+    "@nestjs/platform-express": "^11.1.19",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "ezkey-integration-sdk": "*",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.19.39",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
