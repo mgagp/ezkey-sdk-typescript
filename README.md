@@ -42,6 +42,8 @@ Use this path when you only want to run the split demo against the shared **EXP1
 
 For a single command that starts both processes, `npm run demo` is available. CORS, optional UI env, and behaviour details are in the **Demo (split UI + API)** section below.
 
+![Acme demo merchant sign-in (Vite UI)](acme_login.webp)
+
 ## Contract Workflow
 
 This repository follows a simple contract-first workflow from a live Ezkey stack.
